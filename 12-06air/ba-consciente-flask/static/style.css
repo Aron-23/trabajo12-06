@@ -1,0 +1,128 @@
+:root {
+  --bg-color: #0f172a;
+  --text-color: #e2e8f0;
+  --primary-color: #10b981;
+  --secondary-color: #f59e0b;
+  --accent-color: #3b82f6;
+  --card-bg: #1e293b;
+  --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-family);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+h1, h2, h3 {
+  line-height: 1.1;
+  font-weight: 800;
+}
+
+section {
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hero {
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+}
+
+.hero h1 {
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  margin-bottom: 1rem;
+  background: linear-gradient(to right, #10b981, #3b82f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+  font-size: 1.25rem;
+  max-width: 600px;
+  color: #94a3b8;
+}
+
+.aqi-gauge {
+  margin-top: 3rem;
+  padding: 2rem;
+  background: var(--card-bg);
+  border-radius: 1rem;
+  border: 1px solid #334155;
+}
+
+.aqi-value {
+  font-size: 3rem;
+  font-weight: 900;
+  display: block;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.card {
+  background: var(--card-bg);
+  padding: 2rem;
+  border-radius: 1rem;
+  border-bottom: 4px solid var(--primary-color);
+}
+
+.card.warning { border-color: var(--secondary-color); }
+.card.accent { border-color: var(--accent-color); }
+
+.card .stat {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 1rem 0;
+  display: block;
+}
+
+.text-primary { color: var(--primary-color); }
+.text-secondary { color: var(--secondary-color); }
+.text-accent { color: var(--accent-color); }
+
+.action-hub {
+  background: #1e293b;
+  border-radius: 2rem;
+  padding: 3rem;
+  text-align: center;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: var(--primary-color);
+  color: #0f172a;
+  text-decoration: none;
+  font-weight: 700;
+  border-radius: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+footer {
+  text-align: center;
+  padding: 3rem;
+  color: #64748b;
+}
+
+@media (max-width: 768px) {
+  section { padding: 2rem 1rem; }
+}

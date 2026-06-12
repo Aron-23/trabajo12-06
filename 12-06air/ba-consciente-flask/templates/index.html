@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BA Consciente 2026 | Flask</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Buenos Aires: Pulso Ambiental 2026</h1>
+        <p>Monitoreo ciudadano sobre el estado de nuestra casa común. Hacia una ciudad más resiliente y limpia.</p>
+        
+        <div class="aqi-gauge">
+            <h3>Calidad del Aire (CABA)</h3>
+            <span id="aqi-display" class="aqi-value {{ 'text-secondary' if aqi > 100 else 'text-primary' }}">
+                {{ aqi }}
+            </span>
+            <p id="aqi-text">{{ 'No saludable para grupos sensibles' if aqi > 100 else 'Aceptable' }}</p>
+        </div>
+    </section>
+
+    <!-- Stats Grid -->
+    <section id="stats">
+        <h2 style="text-align: center; margin-bottom: 3rem;">Ejes Críticos</h2>
+        <div class="grid">
+            {% for s in stats %}
+            <div class="card {{ s.type }}">
+                <h3>{{ s.title }}</h3>
+                <span class="stat text-{{ 'secondary' if s.type == 'warning' else s.type }}">
+                    {{ s.stat }}
+                </span>
+                <p>{{ s.desc }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Action Hub -->
+    <section>
+        <div class="action-hub">
+            <h2>Actuá hoy por Buenos Aires</h2>
+            <p>La transformación ambiental comienza con la participación ciudadana.</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="https://farn.org.ar" target="_blank" class="btn">FARN Argentina</a>
+                <a href="https://buenosaires.gob.ar/ciudadverde" target="_blank" class="btn" style="background: #3b82f6;">Ciudad Verde</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 BA Consciente | Servido con Python & Flask.</p>
+    </footer>
+
+    <script>
+        // Simulación de fluctuación de AQI en el cliente
+        let currentAqi = {{ aqi }};
+        const display = document.getElementById('aqi-display');
+        const text = document.getElementById('aqi-text');
+
+        setInterval(() => {
+            currentAqi += Math.random() > 0.5 ? 1 : -1;
+            display.innerText = currentAqi;
+            
+            if (currentAqi > 100) {
+                display.className = 'aqi-value text-secondary';
+                text.innerText = 'No saludable para grupos sensibles';
+            } else {
+                display.className = 'aqi-value text-primary';
+                text.innerText = 'Aceptable';
+            }
+        }, 5000);
+    </script>
+</body>
+</html>
